@@ -19,10 +19,7 @@ const sections = [
     title: "Cafeteria",
     description: "Food menu and timings"
   },
-  {
-    title: "AI Assistant",
-    description: "Ask campus-related questions"
-  }
+   
 ];
 
 export default sections;
