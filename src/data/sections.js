@@ -19,6 +19,10 @@ const sections = [
     title: "Cafeteria",
     description: "Food menu and timings"
   },
+  {
+    title: "Noticeboard",
+    description: "Important information in the campus"
+  },
    
 ];
 

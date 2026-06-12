@@ -36,3 +36,47 @@ nav h1 {
 .card h2 {
   margin-top: 0;
 }
+.chat-box {
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+  background: white;
+  margin-bottom: 15px;
+}
+
+.user-message {
+  background: #dbeafe;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+  text-align: right;
+}
+
+.assistant-message {
+  background: #f3f4f6;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+  text-align: left;
+}
+
+.chat-input-container {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input-container input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.chat-input-container button {
+  width: 60px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}

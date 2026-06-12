@@ -11,7 +11,29 @@ function Dashboard() {
   const [searchTerm, setSearchTerm] = useState("");
   const filteredSections = sections.filter((item) =>
   item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  
 );
+
+
+
+const handleSend = () => {
+  if (!input.trim()) return;
+
+  const userMessage = {
+    role: "user",
+    text: input
+  };
+
+  const botMessage = {
+    role: "assistant",
+    text: "This response will come from Gemini later."
+  };
+
+  setMessages([...messages, userMessage, botMessage]);
+
+  setInput("");
+};
+
      return (
 
   <div style={{ display: "flex" }}>
