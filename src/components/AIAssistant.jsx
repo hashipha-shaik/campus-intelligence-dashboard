@@ -8,6 +8,53 @@ function AIAssistant() {
 ]);
 
  const [input, setInput] = useState("");
+ const sendMessage = async () => {
+  if (!input.trim()) return;
+
+  const userMessage = input;
+
+  setMessages((prev) => [
+    ...prev,
+    { role: "user", text: userMessage },
+  ]);
+
+  setInput("");
+
+  try {
+    const response = await fetch(
+      "http://localhost:5000/chat",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: userMessage,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: "assistant",
+        text: data.answer,
+      },
+    ]);
+  } catch (error) {
+    console.error(error);
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: "assistant",
+        text: "Error connecting to server.",
+      },
+    ]);
+  }
+};
    return (
   <div
     style={{
@@ -62,20 +109,7 @@ function AIAssistant() {
       />
 
       <button
-        onClick={() => {
-          if (!input.trim()) return;
-
-          setMessages([
-            ...messages,
-            { role: "user", text: input },
-            {
-              role: "assistant",
-              text: "This response will come from Gemini later.",
-            },
-          ]);
-
-          setInput("");
-        }}
+       onClick={sendMessage}
         style={{
           padding: "7px 11px",
           borderRadius: "50%",

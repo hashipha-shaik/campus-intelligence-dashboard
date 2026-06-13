@@ -9,8 +9,9 @@ const { getPlacements } = require("../mcp/placementsServer");
 const { getCafeteria } = require("../mcp/cafeteriaServer");
 const { getNotices } = require("../mcp/noticesServer");
 const { getAcademics } = require("../mcp/academicsServer");
+const { generateResponse } = require("../gemini");
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const { message } = req.body;
 
   const service = detectService(message);
@@ -48,10 +49,24 @@ router.post("/", (req, res) => {
       };
   }
 
-  res.json({
-    routedTo: service,
-    data,
-  });
+const prompt = `
+User Question:
+${message}
+
+Campus Data:
+${JSON.stringify(data, null, 2)}
+
+Answer naturally.
+Do not use markdown symbols like ** or *.
+Use plain text only.
+`;
+
+const aiReply = await generateResponse(prompt);
+
+res.json({
+  routedTo: service,
+  answer: aiReply,
+});
 });
 
 module.exports = router;
