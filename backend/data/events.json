@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "Tech Fest 2026",
+    "date": "2026-06-20",
+    "venue": "Main Auditorium"
+  },
+  {
+    "id": 2,
+    "title": "AI Workshop",
+    "date": "2026-06-25",
+    "venue": "Seminar Hall"
+  }
+]
